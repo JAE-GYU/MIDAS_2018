@@ -52,6 +52,13 @@ nav {
     position: relative;
 }
 
+nav > .nav-bar:nth-of-type(2) {
+    top: 0;
+    left: 0;
+    transform: translateY(0);
+    height: 80px;
+}
+
 .nav-item {
     float: left;
     line-height: 80px;
@@ -144,6 +151,11 @@ nav {
 }
 
 @media screen and (max-width: 768px) {
+    .header-clean {
+        background: none !important;
+        box-shadow: none !important;
+    }
+
     #main {
         clear: both;
     }
@@ -397,6 +409,7 @@ nav {
 
 .login-wrap > .container-wrap, .join-wrap > .container-wrap {
     padding: 10px;
+    padding-top: 20px;
 }
 
 .login-text1 {
@@ -473,6 +486,7 @@ nav {
 
     .login-wrap > .container-wrap, .join-wrap > .container-wrap {
         padding: 20px;
+        padding-top: 40px;        
     }   
 }
 
