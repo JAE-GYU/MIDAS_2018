@@ -51,6 +51,7 @@ public class UserController {
         List<User> listUser = userService.macth(user.getEmail(), user.getPassword());
         responseFormat.setList(listUser);
         if(listUser.size() == 1) {
+            listUser.get(0).setPassword(SHA256(user.getPassword()));
             saveSession(session, listUser.get(0));
             this.session = session;
         }else{
