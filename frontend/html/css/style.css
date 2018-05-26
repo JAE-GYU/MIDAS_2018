@@ -82,6 +82,11 @@ nav > .nav-bar:nth-of-type(2) {
     color: #444;
     font-size: 16px;
     text-decoration: none;
+    transition: .4s all;
+}
+
+.nav-item a:hover {
+    color: #eba61d;
 }
 
 .nav-item i {
@@ -471,7 +476,7 @@ nav > .nav-bar:nth-of-type(2) {
     }   
 }
 
-/* menus */
+/* Menus */
 #menus {
     margin-top: 100px;
     clear: both;
@@ -615,4 +620,78 @@ input[type='number'] {
 footer {
     clear: both;
     height: 80px;
+}
+
+/* Reservation */
+.img-border {
+    border: 1px solid #ccc;
+}
+
+.reserve-table th {
+    font-size: 18px;
+    padding: 30px 0;
+    background: #f9f8f7;
+}
+
+.reserve-table tr {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.reserve-table td {
+    vertical-align: middle;
+    text-align: center;
+    color: #444;
+    padding: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.reserve-table tr td input[type='number'] {
+    height: 50px;
+    width: 50px;
+    border-radius: .3rem;
+    text-align: center;
+    padding: 0;
+}
+
+.reserve-table tr td:nth-of-type(1) {
+    width: 20%;
+}
+
+.reserve-table tr td:nth-of-type(2) {
+    width: 20%;
+}
+
+.reserve-table tr td:nth-of-type(3) {
+    width: 20%;
+}
+
+.reserve-table tr td:nth-of-type(4) {
+    width: 20%;
+}
+
+.reserve-table select {
+    background: #fff;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: .3rem;
+}
+
+.border-top-none {
+    border-top: 0 !important;
+}
+
+.reserve-total { 
+    position: relative;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.25);
+}
+
+.total-price {
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
