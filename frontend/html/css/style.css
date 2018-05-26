@@ -604,7 +604,9 @@ input[type='number'] {
     width: 100%;
 }
 
-.menu-list-item p {
+.menu-list-item a {
+    text-decoration: none;
+    color: #222;
     font-size: 18px;
     margin-top: 5px;
 }
