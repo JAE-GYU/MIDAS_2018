@@ -4,12 +4,21 @@ import java.sql.Timestamp;
 
 public class Reservation {
     private int reservation_id;
-    private Timestamp create_date;
+    private Timestamp created_date;
     private int user_id;
     private int menu_id;
     private int group_id;
-    private String state;
+    private String state = "WAIT";
     private String comment;
+    private int coupon_id;
+
+    public Timestamp getCreated_date() { return created_date; }
+
+    public void setCreated_date(Timestamp created_date) { this.created_date = created_date; }
+
+    public int getCoupon_id() { return coupon_id; }
+
+    public void setCoupon_id(int coupon_id) { this.coupon_id = coupon_id; }
 
     public int getReservation_id() {
         return reservation_id;
@@ -17,14 +26,6 @@ public class Reservation {
 
     public void setReservation_id(int reservation_id) {
         this.reservation_id = reservation_id;
-    }
-
-    public Timestamp getCreate_date() {
-        return create_date;
-    }
-
-    public void setCreate_date(Timestamp create_date) {
-        this.create_date = create_date;
     }
 
     public int getUser_id() {

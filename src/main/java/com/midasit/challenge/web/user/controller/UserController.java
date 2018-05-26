@@ -115,6 +115,7 @@ public class UserController {
 
     @PostMapping
     private ResponseFormat add(@RequestBody User user){
+        user.setGrade("USER");
         User userList = userService.save(user);
         ResponseFormat responseFormat = new ResponseFormat(userList);
         return responseFormat;

@@ -34,15 +34,15 @@ public class ReservationServiceImpl implements ReservationService{
                 case VIEW_RESERVATION:
                     r.setList(reservationMapper.list());
                     break;
-                case VIEW_BOARD:
-                    r.setList(reservationMapper.view((Reservation) data));
+                case DELETE_RESERVATION:
+                    r.setList(reservationMapper.delete((Reservation) data));
                     break;
                 case INSERT_BOARD:
                     int idx = reservationMapper.insert((Reservation) data);
                     if(idx != 0)
                         r.setList(reservationMapper.view((Reservation) data));
                     break;
-                case UPDATE_BOARD:
+                case UPDATE_RESERVATION:
                     affected = reservationMapper.update((Reservation) data);
                     r.setList(affected == 0 ? null : affected);
                     break;
@@ -54,6 +54,8 @@ public class ReservationServiceImpl implements ReservationService{
 
             if (r.getList() == null)
                 r.fail(cmd.code(), cmd.fail());
+            else
+                r.setCode(cmd.code());
         } catch(Exception e) {
             r.fail(cmd.code(), e.getMessage());
         }
