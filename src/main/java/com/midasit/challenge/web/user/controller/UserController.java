@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,18 +22,66 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    private HttpSession session = null;
+
     @PersistenceContext
     private EntityManager em;
 
     @GetMapping
     private ResponseFormat list(){
         List<User> listUser = userService.findAllUser();
-        ResponseFormat responseFormat = new ResponseFormat(listUser);
-        if(listUser == null){
-            responseFormat.setDescription(CMD.description(CMD.LIST));
+        ResponseFormat responseFormat = new ResponseFormat();
+        User user = (User)session.getAttribute("user");
+        if(user != null){
+            if(user.getGrade().equals("USER")){
+                responseFormat.setCode(-1);
+                responseFormat.setDescription(CMD.description(CMD.LIST));
+                return responseFormat;
+            }
+        }
+        responseFormat.setList(listUser);
+        return responseFormat;
+    }
+
+    @PostMapping("/login")
+    private ResponseFormat login(HttpSession session, @RequestBody User user){
+        ResponseFormat responseFormat = new ResponseFormat();
+        List<User> listUser = userService.macth(user.getEmail(), user.getPassword());
+        responseFormat.setList(listUser);
+        if(listUser.size() == 1) {
+            saveSession(session, listUser.get(0));
+            this.session = session;
         }
         return responseFormat;
     }
+
+    @PostMapping("/logout")
+    private ResponseFormat logout(HttpSession session){
+        ResponseFormat responseFormat = new ResponseFormat();
+        if(session.getAttribute("user") != null){
+            removeSession(session);
+        }
+        return responseFormat;
+    }
+
+    private void saveSession(HttpSession session, User user){
+        if (session.getAttribute("user") == null) {
+            session.setAttribute("user", user);
+        }
+    }
+
+    private void removeSession(HttpSession session){
+        if (session.getAttribute("user") == null) {
+            session.removeAttribute("user");
+        }
+    }
+
+    private Boolean isSession(HttpSession session){
+        return session.getAttribute("user") != null;
+    }
+
+
+//    @GetMapping("/test1")
 
     @GetMapping("/{id}")
     private ResponseFormat view(@PathVariable int id){
@@ -61,10 +111,18 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     private ResponseFormat delete(@PathVariable int id){
-        userService.deleteById(id);
+        User oriUser = em.find(User.class, id);
         ResponseFormat responseFormat = new ResponseFormat();
+
+        if(oriUser != null) {
+            responseFormat.setCode(100);
+            userService.deleteById(id);
+            responseFormat.setDescription("success");
+        }else{
+            responseFormat.setCode(-1);
+            responseFormat.setDescription(CMD.description(CMD.DELETE));
+        }
         return responseFormat;
     }
-
 
 }

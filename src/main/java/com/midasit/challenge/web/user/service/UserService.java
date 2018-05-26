@@ -14,8 +14,6 @@ import java.util.Optional;
 @Service
 public class UserService<T> {
 
-
-
     @Autowired
     public UserRepository userRepository;
 
@@ -27,8 +25,8 @@ public class UserService<T> {
         return userRepository.findAll();
     }
 
-    public User getOne(int id) {
-        return userRepository.getOne(id);
+    public List<User> macth(String email, String password){
+        return userRepository.findByEmailAndPassword(email, password);
     }
 
     /**
