@@ -1,4 +1,4 @@
-package com.midasit.challenge.web.user.format;
+package com.midasit.challenge.web.util.format;
 
 import lombok.Data;
 
