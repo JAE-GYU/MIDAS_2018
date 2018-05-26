@@ -1,7 +1,7 @@
 package com.midasit.challenge.web.util.cmd;
 
 public enum CMD {
-    INSERT, VIEW, DELETE, UPDATE, LIST, LOGIN;
+    INSERT, VIEW, DELETE, UPDATE, LIST, LOGIN, SESSION,LOGOUT;
 
     public int code() {
         return ordinal() + 101;
@@ -16,6 +16,8 @@ public enum CMD {
             case UPDATE: str.append("UPDATE");break;
             case LIST: str.append("LIST");break;
             case LOGIN: str.append("LOGIN");break;
+            case SESSION: str.append("SESSION");break;
+            case LOGOUT: str.append("LOGOUT");break;
         }
         return str.toString();
     }

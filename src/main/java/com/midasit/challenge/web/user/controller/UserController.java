@@ -51,7 +51,23 @@ public class UserController {
         if(listUser.size() == 1) {
             saveSession(session, listUser.get(0));
             this.session = session;
+        }else{
+            responseFormat = new ResponseFormat();
+            responseFormat.setCode(-1);
+            responseFormat.setDescription(CMD.description(CMD.LOGIN));
         }
+        return responseFormat;
+    }
+
+    @PostMapping("/isSession")
+    private ResponseFormat checkSession(HttpSession session){
+        ResponseFormat responseFormat = new ResponseFormat();
+        if(!isSession(session)){
+            responseFormat.setCode(-1);
+            responseFormat.setDescription(CMD.description(CMD.SESSION));
+        }
+        User user = (User)session.getAttribute("user");
+        responseFormat.setList(user);
         return responseFormat;
     }
 
@@ -60,6 +76,10 @@ public class UserController {
         ResponseFormat responseFormat = new ResponseFormat();
         if(session.getAttribute("user") != null){
             removeSession(session);
+        }else{
+            responseFormat.setCode(-1);
+            responseFormat.setDescription(CMD.description(CMD.LOGOUT));
+
         }
         return responseFormat;
     }
@@ -71,7 +91,7 @@ public class UserController {
     }
 
     private void removeSession(HttpSession session){
-        if (session.getAttribute("user") == null) {
+        if (session.getAttribute("user") != null) {
             session.removeAttribute("user");
         }
     }

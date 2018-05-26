@@ -25,10 +25,13 @@ public class ReservationServiceImpl implements ReservationService{
                     affected = reservationMapper.insert((Reservation) data);
                     r.setList(affected == 0 ? null : data);
                     break;
-                case LOGIN_USER:
+                case LIST_BOARD:
                     r.setList(reservationMapper.view((Reservation) data));
                     break;
-                case LIST_BOARD:
+                case GET_GROUP_ID:
+                    r.setList(reservationMapper.select_by_group_id((Reservation) data));
+                    break;
+                case VIEW_RESERVATION:
                     r.setList(reservationMapper.list());
                     break;
                 case VIEW_BOARD:
