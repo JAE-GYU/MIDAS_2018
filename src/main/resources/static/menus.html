@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Midas Cafe</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="container-wrap header-scrolled">
+        <div class="container h">
+            <nav class="h">
+                <div class="logo font-regular col-2 col-clear">
+                    <a href="./index.html">Midas Cafe</a>
+                </div>            
+                <ul class="nav-bar fr h">                
+                    <li class="nav-item h">
+                        <a href="./index.html">홈</a>
+                    </li>
+                    <li class="nav-item h">
+                        <a href="#">메뉴</a>
+                    </li>
+                    <li class="nav-item h">
+                        <a href="./reserve.html">예약하기</a>
+                    </li>                                        
+                    <li class="nav-item h">
+                        <a href="./login.html" class="nav-btn">로그인</a>
+                    </li>                                        
+                </ul>
+                <ul class="nav-bar fr h">
+                    <li class="container pos-relative">
+                        <ul>
+                            <li class="h menu-bar">
+                                <div class="menu-icon">
+                                    <div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>                        
+                    </li>                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="menus" class="h header-scroll-point">
+        <h1 class="d-none">메뉴</h1>
+        <div class="container bg-white">
+            <div class="col-12">
+                <div class="col-12 xs-12 sm-12 md-2 lg-2 pt-0">
+                    <ul class="side-category">
+                        <li class="side-category-title"><div>메뉴</div></li>
+                        <li><a href="#">커피</a></li>
+                        <li><a href="#">차</a></li>
+                        <li><a href="#">주스</a></li>
+                        <li><a href="#">디저트</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 xs-12 sm-12 md-9 lg-9 fr bg-white menu-info">
+                    <h1 class="menu-title">아메리카노 <span>Americano</span></h1>
+                    <div class="col-12 menu-info-wrap col-clear">
+                        <div class="col-6 menu-info-img col-clear">
+                            <img src="images/menu/americano.png" alt="americano" title="americano">
+                        </div>
+                        <div class="col-6 col-clear menu-info-table-wrap">
+                            <table class="menu-info-table">
+                                <tr class="menu-info-tr">
+                                    <th colspan="2">제품 영양 정보</th>
+                                    <th colspan="2">Tall(톨) / 355ml (12floz)</th>
+                                </tr>
+                                <tr>
+                                    <td class="t1">1회 제공량 (kcal)</td>
+                                    <td>5</td>
+                                    <td class="t1">나트륨 (mg)</td>
+                                    <td>11</td>
+                                </tr>
+                                <tr>
+                                    <td class="t1">포화지방 (g)</td>
+                                    <td>0</td>
+                                    <td class="t1">당류 (g)</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td class="t1">단백질 (g)</td>
+                                    <td>0</td>
+                                    <td class="t1">카페인 (mg)</td>
+                                    <td>150</td>
+                                </tr>
+                            </table>
+                            <div class="col-12 pos-relative menu-info-price">
+                                <input class="d-none menu-original-price" value="3000">
+                                <p class="menu-price fr"><span>3000</span>원</p>
+                            </div>
+                            <div class="col-12 pos-relative menu-reserve fr">
+                                <button class="main-btn fr reserve-btn">예약하기</button>                        
+                                <div class="fr">
+                                    <span>수량 : </span><input type="number" class="reserve-count" value="1" min="1">  
+                                </div> 
+                            </div>
+                        </div>                        
+                    </div>                                        
+                </div>
+                <div class="col-12 xs-12 sm-12 md-9 lg-9 fr bg-white menu-list">
+                    <h1 class="menu-title">커피 <span>Coffee</span></h1>
+                    <div class="col-12">
+                        <div class="col-3 menu-list-item">
+                            <div class="container-wrap">
+                                <a href="#"><img src="images/menu/americano.png" alt="americano" title="americano"></a>
+                                <a href="#">아메리카노</a>
+                            </div>
+                        </div>
+                        <div class="col-3 menu-list-item">
+                            <div class="container-wrap">
+                                <a href="#"><img src="images/menu/iced_americano.png" alt="iced_americano" title="iced_americano"></a>
+                                <a href="#">아이스 아메리카노</a>
+                            </div>
+                        </div>
+                        <div class="col-3 menu-list-item">
+                            <div class="container-wrap">
+                                <a href="#"> <img src="images/menu/espresso.png" alt="espresso" title="espresso"></a>
+                                <a href="#">에스프레소</a>
+                            </div>
+                        </div>
+                        <div class="col-3 menu-list-item">
+                            <div class="container-wrap">
+                                <a href="#"><img src="images/menu/vanila_latte.png" alt="vanila_latte" title="vanila_latte"></a>
+                                <a href="#">바닐라 라떼</a>
+                            </div>
+                        </div>
+                        <div class="col-3 menu-list-item">
+                            <div class="container-wrap">
+                                <a href="#"><img src="images/menu/cafe_mocha.png" alt="cafe_mocha" title="cafe_mocha"></a>
+                                <a href="#">카페 모카</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>        
+    </section>
+    <footer>
+
+    </footer>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
