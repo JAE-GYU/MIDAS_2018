@@ -18,7 +18,15 @@ public class CouponController {
 
     @GetMapping
     public ResponseFormat list() {
-        return svc.response(ReservationCMD.VIEW_COUPON, null);
+        return svc.response(ReservationCMD.LIST_COUPON, null);
+    }
+
+    @GetMapping("/{id}")
+    private ResponseFormat selecByMakeCouponId(@PathVariable int id){
+        Coupon coupon = new Coupon();
+        coupon.setCoupon_id(id);
+        ResponseFormat responseFormat = svc.response(ReservationCMD.VIEW_COUPON, coupon);
+        return responseFormat;
     }
 
     @PostMapping
@@ -29,17 +37,8 @@ public class CouponController {
     }
 
     @PutMapping
-    private ResponseFormat update(@RequestBody Coupon reservation) {
-        ResponseFormat responseFormat = svc.response(ReservationCMD.UPDATE_RESERVATION, reservation);
+    private ResponseFormat update(@RequestBody Coupon coupon) {
+        ResponseFormat responseFormat = svc.response(ReservationCMD.UPDATE_COUPON, coupon);
         return responseFormat;
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseFormat delete(@PathVariable int id) {
-        return new ResponseFormat();
-    }
-
-    private Boolean isSession(HttpSession session) {
-        return session.getAttribute("user") != null;
     }
 }

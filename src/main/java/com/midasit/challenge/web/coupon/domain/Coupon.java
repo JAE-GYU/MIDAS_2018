@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 public class Coupon {
     private int coupon_id;
-    private int user_id;
     private String name;
     private int discount;
     private Timestamp start_date;
@@ -16,14 +15,6 @@ public class Coupon {
 
     public void setCoupon_id(int coupon_id) {
         this.coupon_id = coupon_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getName() {

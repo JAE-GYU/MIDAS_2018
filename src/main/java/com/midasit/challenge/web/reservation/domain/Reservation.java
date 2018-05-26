@@ -11,6 +11,11 @@ public class Reservation {
     private String state = "WAIT";
     private String comment;
     private int coupon_id;
+    private int makecoupon_id = 0;
+
+    public int getMakecoupon_id() { return makecoupon_id; }
+
+    public void setMakecoupon_id(int makecoupon_id) { this.makecoupon_id = makecoupon_id; }
 
     public Timestamp getCreated_date() { return created_date; }
 

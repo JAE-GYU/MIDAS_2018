@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC
+        "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.midasit.challenge.web.coupon.mapper.MakeCouponMapper">
+    <select id="list" resultType="com.midasit.challenge.web.coupon.domain.MakeCoupon">
+        select makecoupon_id, user_id, coupon_id, state
+        from make_coupon
+        order by makecoupon_id desc
+    </select>
+
+    <select id="select_by_user_id" parameterType="com.midasit.challenge.web.coupon.domain.MakeCoupon" resultType="com.midasit.challenge.web.coupon.domain.MakeCoupon">
+        select makecoupon_id, user_id, coupon_id, state
+        from make_coupon
+        WHERE NOT state='USE'
+        AND
+        user_id=#{user_id}
+    </select>
+
+    <select id="select_by_coupon_id" parameterType="com.midasit.challenge.web.coupon.domain.MakeCoupon" resultType="com.midasit.challenge.web.coupon.domain.MakeCoupon">
+        select makecoupon_id, user_id, coupon_id, state
+        from make_coupon
+        where makecoupon_id=#{makecoupon_id}
+    </select>
+
+    <update id="update_state" parameterType="com.midasit.challenge.web.coupon.domain.MakeCoupon" >
+        UPDATE  make_coupon
+        SET state=#{state}
+        WHERE makecoupon_id=#{makecoupon_id}
+    </update>
+
+    <insert id="insert" parameterType="com.midasit.challenge.web.coupon.domain.MakeCoupon" >
+        INSERT INTO make_coupon( makecoupon_id, user_id, coupon_id, state)
+         VALUES
+         (#{makecoupon_id}, #{user_id}, #{coupon_id}, #{state})
+        <selectKey keyProperty="makecoupon_id" resultType="Integer">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="com.midasit.challenge.web.coupon.domain.MakeCoupon" >
+        UPDATE  make_coupon
+        SET makecoupon_id=#{makecoupon_id}, user_id=#{user_id}, coupon_id=#{coupon_id}, state=#{state}
+        WHERE makecoupon_id=#{makecoupon_id}
+    </update>
+
+    <delete id="delete" parameterType="com.midasit.challenge.web.coupon.domain.MakeCoupon">
+        delete from make_coupon
+        where makecoupon_id=#{makecoupon_id}
+    </delete>
+
+</mapper>

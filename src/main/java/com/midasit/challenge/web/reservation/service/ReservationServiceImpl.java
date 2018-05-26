@@ -1,8 +1,9 @@
 package com.midasit.challenge.web.reservation.service;
 
+import com.midasit.challenge.web.coupon.domain.MakeCoupon;
+import com.midasit.challenge.web.coupon.mapper.MakeCouponMapper;
 import com.midasit.challenge.web.reservation.domain.Reservation;
 import com.midasit.challenge.web.reservation.mapper.ReservationMapper;
-import com.midasit.challenge.web.util.cmd.CMD;
 import com.midasit.challenge.web.util.cmd.ReservationCMD;
 import com.midasit.challenge.web.util.format.ResponseFormat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class ReservationServiceImpl implements ReservationService{
     @Autowired
     ReservationMapper reservationMapper;
 
+    @Autowired
+    MakeCouponMapper makeCouponMapper;
+
     @Override
     public ResponseFormat response(ReservationCMD cmd, Object data) {
         ResponseFormat r = new ResponseFormat(cmd.description());
@@ -22,7 +26,19 @@ public class ReservationServiceImpl implements ReservationService{
             int affected;
             switch (cmd) {
                 case ADD_RESERVATION:
-                    affected = reservationMapper.insert((Reservation) data);
+                    Reservation reservation = (Reservation) data;
+                    affected = reservationMapper.insert(reservation);
+                    if(reservation.getMakecoupon_id() != 0) {
+                        MakeCoupon makeCoupon = new MakeCoupon();
+                        makeCoupon.setMakecoupon_id(reservation.getMakecoupon_id());
+                        makeCoupon = makeCouponMapper.select_by_coupon_id(makeCoupon);
+                        makeCoupon.setState("USE");
+                        makeCouponMapper.update_state(makeCoupon);
+                        if(makeCoupon == null){
+                            break;
+                        }
+                        makeCouponMapper.update(makeCoupon);
+                    }
                     r.setList(affected == 0 ? null : data);
                     break;
                 case LIST_BOARD:
@@ -46,9 +62,8 @@ public class ReservationServiceImpl implements ReservationService{
                     affected = reservationMapper.update((Reservation) data);
                     r.setList(affected == 0 ? null : affected);
                     break;
-                case DELETE_BOARD:
-                    affected = reservationMapper.delete((Reservation) data);
-                    r.setList(affected == 0 ? null : affected);
+                case VIEW_COUPON:
+                    r.setList(reservationMapper.view((Reservation) data));
                     break;
             }
 
@@ -57,6 +72,7 @@ public class ReservationServiceImpl implements ReservationService{
             else
                 r.setCode(cmd.code());
         } catch(Exception e) {
+            e.printStackTrace();
             r.fail(cmd.code(), e.getMessage());
         }
 

@@ -16,4 +16,6 @@ public interface ReservationMapper {
     public int update(Reservation board);
     public int delete(Reservation board);
     public int select_by_group_id(Reservation board);
+    public int select_by_coupon_id(Reservation board);
+    public int update_state(Reservation board);
 }

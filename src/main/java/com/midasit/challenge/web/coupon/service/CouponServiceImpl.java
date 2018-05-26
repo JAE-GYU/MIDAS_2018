@@ -18,12 +18,23 @@ public class CouponServiceImpl implements CouponService {
         try {
             int affected;
             switch (cmd) {
-                case VIEW_COUPON:
+                case LIST_COUPON:
                     r.setList(couponMapper.list());
                     break;
-                case ADD_COUPON:
-                    r.setList(couponMapper.insert((Coupon) data));
+                case VIEW_COUPON:
+                    r.setList(couponMapper.view((Coupon) data));
                     break;
+                case ADD_COUPON:
+                    affected = couponMapper.insert((Coupon) data);
+                    r.setList(affected == 0 ? null : affected);
+                    r.setLast_idx(((Coupon) data).getCoupon_id());
+                    break;
+                case UPDATE_COUPON:
+                    affected = couponMapper.update((Coupon) data);
+                    r.setList(affected == 0 ? null : affected);
+                    r.setLast_idx(((Coupon) data).getCoupon_id());
+                    break;
+
             }
             if (r.getList() == null)
                 r.fail(cmd.code(), cmd.fail());
