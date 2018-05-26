@@ -22,5 +22,5 @@ $(function(){
                 $("nav > .nav-bar:nth-of-type(1)").css({"display":"none"});
             }
         }
-    })
+    });
 });
